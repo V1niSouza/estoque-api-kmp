@@ -1,0 +1,31 @@
+package com.fatec.estoque_api_kmp.plugins
+
+import com.fatec.estoque_api_kmp.routes.stockRoutes
+import com.fatec.estoque_api_kmp.routes.productRoutes
+import io.github.jan.supabase.SupabaseClient
+import io.ktor.server.application.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
+
+fun Application.configureRouting(supabase: SupabaseClient?) {
+    routing {
+        get("/") {
+            call.respondText("Estoque API is running!")
+        }
+        
+        get("/api/health") {
+            call.respondText("""{"status":"ok"}""", io.ktor.http.ContentType.Application.Json)
+        }
+
+        if (supabase != null) {
+            stockRoutes(supabase)
+            productRoutes(supabase)
+        } else {
+            route("/api") {
+                get("{...}") {
+                    call.respondText("SupabaseClient is null. Check Environment Variables.", status = io.ktor.http.HttpStatusCode.InternalServerError)
+                }
+            }
+        }
+    }
+}
