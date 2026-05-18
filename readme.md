@@ -116,7 +116,7 @@ ON DELETE CASCADE em products → stock_items
 ### 📥 1. Clonar o repositório
 
 ```bash
-git clone <URL-DO-REPOSITORIO>
+git clone https://github.com/V1niSouza/estoque-api-kmp.git
 cd estoque-api-kmp
 ```
 
