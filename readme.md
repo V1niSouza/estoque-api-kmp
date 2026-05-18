@@ -39,52 +39,69 @@ ON DELETE CASCADE em products → stock_items
 
 ## 🌐 Rotas
 
-### PRODUCTS
-GET /products  
-GET /products/{id}  
-POST /products  
-PUT /products/{id}  
-DELETE /products/{id}
+### 🧾 PRODUCTS
 
-### STOCK
-GET /stock  
-GET /stock/{id}  
-POST /stock  
-PUT /stock/{id}  
-DELETE /stock/{id}
+| Método | Endpoint              | Descrição                    |
+|--------|----------------------|----------------------------|
+| GET    | /products            | Lista todos os produtos     |
+| GET    | /products/{id}       | Busca produto por ID        |
+| POST   | /products            | Cria um novo produto        |
+| PUT    | /products/{id}       | Atualiza um produto         |
+| DELETE | /products/{id}       | Remove um produto           |
 
-### SUMMARY
-GET /stock/summary
+---
+
+### 📦 STOCK
+
+| Método | Endpoint          | Descrição                        |
+|--------|------------------|----------------------------------|
+| GET    | /stock           | Lista itens de estoque           |
+| GET    | /stock/{id}      | Busca item de estoque por ID     |
+| POST   | /stock           | Adiciona item ao estoque         |
+| PUT    | /stock/{id}      | Atualiza item de estoque         |
+| DELETE | /stock/{id}      | Remove item de estoque           |
+
+---
+
+### 📊 SUMMARY
+
+| Método | Endpoint           | Descrição                                      |
+|--------|-------------------|------------------------------------------------|
+| GET    | /stock/summary    | Retorna total de quantidade por produto        |
 
 ---
 
 ## 📥 JSON EXEMPLOS
 
 ### Criar produto
+```json
 {
   "name": "Caneta Azul",
   "description": "Esferográfica",
   "sku": "CAN-001",
   "category": "Escritório"
 }
-
+```
 ### Criar estoque
+```json
 {
   "product_id": "uuid",
   "quantity": 10,
   "unit_price": 12.90,
   "location": "A1"
 }
-
+```
 ### Update estoque
+```json
 {
   "quantity": 20,
   "unit_price": 15.00
 }
-
+```
 ---
 
 ## 📊 Summary retorno
+```json
 [
   {
     "product_id": "uuid",
@@ -92,7 +109,7 @@ GET /stock/summary
     "total_quantity": 100
   }
 ]
-
+```
 ---
 ## 🚀 Execução do Projeto
 
